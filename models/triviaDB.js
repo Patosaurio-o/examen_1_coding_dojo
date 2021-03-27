@@ -65,7 +65,7 @@ const Quest = sql.define('Quest', {
     validate: {
       len: {
         args: [15, 255],
-        msg: "tiene que tener un minimo de 15 caracteres"
+        msg: "la pregunta tiene que tener un minimo de 15 caracteres"
       }
     }
   },

@@ -61,7 +61,9 @@
 			$(document).ready( function () {
     		$('#myTable').DataTable();
 			});
-			toastr.info('<%=user.name%> tu puntuacion fue <%=ul%> <%=ulp%>')
+			<%if(ultimo.id++){%>
+				toastr.info('<%=user.name%> tu puntuacion fue <%=ultimo.score%>/3 es igual a un <%=ultimo.percentage%>%')
+			<%}%>
 		</script>
 	</body>
 </html>

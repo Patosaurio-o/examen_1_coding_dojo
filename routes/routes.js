@@ -17,17 +17,18 @@ router.get('/login', (req, res) => {
 router.get('/lets_a_play',checkLogin, async (req, res) => {
   const quest = await Quest.findAll();
   let questCount = await Quest.findAndCountAll();
-  if(questCount > 3){
-    res.redirect('new_quest')
+  if(questCount.count == 0 || questCount.count < 3){
+    res.redirect('/addNewQuest')
   }
+  let math = Math.floor(Math.random()*questCount.count);
   const errors = req.flash('errors');
-  let n1 = Math.floor(Math.random()*questCount.count);
-  let n2 = Math.floor(Math.random()*questCount.count);
-  let n3 = Math.floor(Math.random()*questCount.count);
+  let n1 = math;
+  let n2 = math;
+  let n3 = math;
   if(n1==n2||n2==n3||n3==n1){
-    n1=Math.floor(Math.random()*questCount.count),
-    n2=Math.floor(Math.random()*questCount.count),
-    n3=Math.floor(Math.random()*questCount.count)
+    n1=math,
+    n2=math,
+    n3=math
   }
   res.render('inGame', {
     quest,
@@ -66,10 +67,15 @@ router.post('/lets_a_play',checkLogin, async (req, res) => {
 });
 
 router.get('/', checkLogin, async (req, res) => {
-  let scoreCount = await Score.findAndCountAll();
-  const ultimo = await Score.findOne({where: {id: scoreCount.count}});
-  let ul = ultimo.score;
-  let ulp = ultimo.percentage
+const scoreCount = await Score.findAndCountAll();
+ let ultimo = await Score.findOne({where: {id: scoreCount.count}});
+  if(scoreCount.count == 0){
+    ultimo = {
+      score:0,
+      percentage:0
+    }
+  }
+  console.log(ultimo)
   const user = await User.findAll(
     {include: [Score]}
   );
@@ -79,8 +85,7 @@ router.get('/', checkLogin, async (req, res) => {
   res.render('mainPage',{
     users:user, 
     score:score,
-    ul,
-    ulp
+    ultimo:ultimo
   });
 });
 
