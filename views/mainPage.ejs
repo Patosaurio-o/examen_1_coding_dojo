@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Home game</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="/js/jquery-3.5.1.min.js"></script>
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<Script src="/js/bootstrap.bundle.min.js"></SCript>
+		<script src="/js/moment-whit-locales.min.js"></script>
+		<link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+		<script src="/js/toastr.js"></script>
+		<link href="/css/toastr.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="/css/datatables.min.css">
+		<script src="/js/datatables.min.js"></script>
+		<link rel="stylesheet" href="/css/style.css">
+
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-4">
+					</br>
+					<a href="/">Home</a> |
+					<a href="/addNewQuest">Add a Question</a>
+				</div>
+				<div class="col-2 offset-6">
+				</br>
+					<a href="/logout">logout</a>
+				</div>
+				<div class="col-6 offset-md-3 inicio">
+					<a class="play" href="/lets_a_play"> Play!</a>
+					<h4>Click the button above to star the trivia game</h4>
+				</div>
+				<div class="col-10">
+					<table id="myTable" class="table table-sm table-striped table-hover table-bordered">
+						<thead>
+							<tr role="row" class="odd">
+								<th>Name</th>
+								<th>Score</th>
+								<th>Percentage</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%for(let userAll of users) { %>
+								<%for(let scores of userAll.Scores){%>
+									<tr role="row" class="odd">
+										<td><%= userAll.name %></td>
+										<td><%= scores.score %>/3</td>
+										<td><%= scores.percentage %>%</td>
+									</tr>		
+								<%}%>
+							<%}%>	
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready( function () {
+    		$('#myTable').DataTable();
+			});
+			toastr.info('<%=user.name%> tu puntuacion fue <%=ul%> <%=ulp%>')
+		</script>
+	</body>
+</html>

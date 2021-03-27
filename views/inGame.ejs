@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+		<title>Trivia Test</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/jquery-3.5.1.min.js"></script>
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<Script src="/js/bootstrap.bundle.min.js"></SCript>
+		<script src="/js/moment-whit-locales.min.js"></script>
+		<link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+		<script src="/js/toastr.js"></script>
+		<link href="/css/toastr.css" rel="stylesheet">
+		<link rel="stylesheet" href="/css/datatables.min.css">
+		<script src="/js/datatables.min.js"></script>
+		<link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+			<div class="row">
+				<div class="col">
+          </br>
+          <h2>hi <%=user.name%>!!!</h2>
+          <h4>choose an answer for each of the questions and submit the test once done.</h4>
+          <h4>Good luck!</h4>
+          </br>
+          <form id="formScore" action="/lets_a_play" method="post">
+            <div class="caja col-8 offset-2">
+              <h4><%=quest[n1].question%></h4>
+              <div class="form-check col offset-1">
+                <input class="form-check-input" type="radio" name="quest1" id="correct1" value="<%=quest[n1].answer_correct%>">
+                <label class="form-check-label" for="quest11">
+                  <%=quest[n1].answer_correct%>
+                </label>
+              </div>
+              <div class="form-check col offset-1">
+                <input class="form-check-input" type="radio" name="quest1" id="fake1" value="<%=quest[n1].answer_fake_1%>">
+                <label class="form-check-label" for="quest12">
+                  <%=quest[n1].answer_fake_1%>
+                </label>
+              </div>
+              <div class="form-check col offset-1">
+                <input class="form-check-input" type="radio" name="quest1" id="fake2" value="<%=quest[n1].answer_fake_2%>">
+                <label class="form-check-label" for="<quest13">
+                  <%=quest[n1].answer_fake_2%>
+                </label>
+              </div>
+            </div>
+            <div class="caja col-8 offset-2">
+              <h4><%=quest[n2].question%></h4>
+              <div class="form-check col offset-1">
+                <input class="form-check-input" type="radio" name="quest2" id="fake3" value="<%=quest[n2].answer_fake_1%>">
+                <label class="form-check-label" for="quest2">
+                  <%=quest[n2].answer_fake_1%>
+                </label>
+              </div>
+              <div class="form-check col offset-1">
+                <input class="form-check-input" type="radio" name="quest2" id="fake4" value="<%=quest[n2].answer_fake_2%>">
+                <label class="form-check-label" for="quest23">
+                  <%=quest[n2].answer_fake_2%>
+                </label>
+              </div>
+            <div class="form-check col offset-1">
+              <input class="form-check-input" type="radio" name="quest2" id="correct2" value="<%=quest[n2].answer_correct%>">
+              <label class="form-check-label" for="quest21">
+                <%=quest[n2].answer_correct%>
+              </label>
+            </div>
+            </div>
+            <div class="caja col-8 offset-2">
+              <h4><%=quest[n3].question%></h4>
+              <div class="form-check col offset-1">
+                <input class="form-check-input" type="radio" name="quest3" id="fake5" value="<%=quest[n3].answer_fake_1%>">
+                <label class="form-check-label" for="quest32">
+                  <%=quest[n3].answer_fake_1%>
+                </label>
+              </div>
+              <div class="form-check col offset-1">
+                <input class="form-check-input" type="radio" name="quest3" id="correct3" value="<%=quest[n3].answer_correct%>">
+                <label class="form-check-label" for="quest31">
+                  <%=quest[n3].answer_correct%>
+                </label>
+              </div>
+              <div class="form-check col offset-1">
+                <input class="form-check-input" type="radio" name="quest3" id="fake6" value="<%=quest[n3].answer_fake_2%>">
+                <label class="form-check-label" for="quest33">
+                  <%=quest[n3].answer_fake_2%>
+                </label>
+              </div>
+            </div>
+            </br>
+            <div class="col-4 offset-8">
+							<a class="btn btn-danger" href="/">Cancel</a>
+							<button class="btn btn-primary" type="submit">Add Question</button>
+						</div>
+          </form>
+				</div>
+			</div>
+		</div>
+    <script>
+			$(document).ready(function(){
+      <%for(error of errors){%>
+        toastr.error('<%=error%>')
+      <%}%>    
+    });
+		</script>
+  </body>
+</html>
